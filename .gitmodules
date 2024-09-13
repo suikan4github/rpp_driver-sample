@@ -1,0 +1,3 @@
+[submodule "pico_driver"]
+	path = pico_driver
+	url = https://github.com/suikan4github/pico_driver.git
