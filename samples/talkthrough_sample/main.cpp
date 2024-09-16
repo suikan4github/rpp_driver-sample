@@ -36,7 +36,7 @@ int main() {
   const unsigned int I2S_GPIO_PIN_BASE = 10;
   const unsigned int I2S_GPIO_PIN_DEBUG = 15;
 
-  ::pico_driver::SDKWrapper sdk;
+  ::pico_driver::SdkWrapper sdk;
 
   // Init USB-Serial port by 9600bps, 1stop bit, 8bit.
   // add following lines to CMakeLists.txt
@@ -68,7 +68,7 @@ int main() {
 #endif
 
   // Prepare the Audio CODEC.
-  ::pico_driver::I2CMaster i2c(sdk, *i2c1, i2c_clock, i2c_scl_pin, i2c_sda_pin);
+  ::pico_driver::I2cMaster i2c(sdk, *i2c1, i2c_clock, i2c_scl_pin, i2c_sda_pin);
   ::pico_driver::UmbAdau1361Lower codec_lower(i2c, adau1361_i2c_address);
   ::pico_driver::Adau1361 codec(fs, mclock, codec_lower);
 
@@ -90,7 +90,7 @@ int main() {
 
   // I2S Initialization. We run the I2S PIO program from here.
   // We have to wait for the RX FIFO ASAP.
-  ::pico_driver::DuplexSlaveI2S i2s(sdk, i2s_pio, i2s_sm, I2S_GPIO_PIN_BASE);
+  ::pico_driver::DuplexSlaveI2s i2s(sdk, i2s_pio, i2s_sm, I2S_GPIO_PIN_BASE);
   i2s.Start();
 
   // Audio talk thorough
