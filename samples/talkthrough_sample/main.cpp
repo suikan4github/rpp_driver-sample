@@ -7,12 +7,12 @@
 #endif
 
 #include "adau1361.hpp"
-#include "adau1361lower.hpp"
 #include "duplexslavei2s.hpp"
 #include "hardware/pio.h"
 #include "i2cmaster.hpp"
 #include "pico/binary_info.h"
 #include "sdkwrapper.hpp"
+#include "umbadau1361lower.hpp"
 
 int main() {
   const unsigned int adau1361_i2c_address = 0x38;
@@ -69,7 +69,7 @@ int main() {
 
   // Prepare the Audio CODEC.
   ::pico_driver::I2CMaster i2c(sdk, *i2c1, i2c_clock, i2c_scl_pin, i2c_sda_pin);
-  ::pico_driver::Adau1361Lower codec_lower(i2c, adau1361_i2c_address);
+  ::pico_driver::UmbAdau1361Lower codec_lower(i2c, adau1361_i2c_address);
   ::pico_driver::Adau1361 codec(fs, mclock, codec_lower);
 
   // Use RasPi Pico on-board LED.
