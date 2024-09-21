@@ -122,12 +122,14 @@ int main() {
   }
 
   // Information for the picotool.
+  // clang-format off
   bi_decl(bi_program_description(
       "Working with UMB-ADAU1361A board. ADAU1361A I2C address is 0x38."));
-  bi_decl(bi_program_url("https://github.com/suikan4github/duplex-i2s-pico"));
+  bi_decl(bi_program_url("https://github.com/suikan4github/pico_driver-sample"));
   bi_decl(bi_2pins_with_func(kI2cScl_pin, kI2cSdaPin, GPIO_FUNC_I2C));
   bi_decl(bi_4pins_with_names(kI2sGpioPinBase, "I2S SDO", kI2sGpioPinBase + 1,
                               "I2S_SDI", kI2sGpioPinBase + 2, "I2S BCLK IN",
                               kI2sGpioPinBase + 3, "I2S WS IN"));
   bi_decl(bi_1pin_with_name(kI2sGpioPinDebug, "DEBUG OUT"));
+  // clang-format on
 }
