@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 # Redefine the project name for this executable. 
-project(talkthrough_sample)
+project(talkthrough)
 
 # executable is created here. 
 add_executable(${PROJECT_NAME}
