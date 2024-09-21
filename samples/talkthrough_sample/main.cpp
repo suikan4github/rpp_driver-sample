@@ -8,6 +8,7 @@
 
 #include "adau1361.hpp"
 #include "duplexslavei2s.hpp"
+#include "gpiobasic.hpp"
 #include "hardware/pio.h"
 #include "i2cmaster.hpp"
 #include "pico/binary_info.h"
@@ -73,12 +74,12 @@ int main() {
 
   // Use RasPi Pico on-board LED.
   // 1=> Turn on, 0 => Turn pff.
-  sdk.gpio_init(kLedPin);
-  sdk.gpio_set_dir(kLedPin, true);
+  ::pico_driver::GpioBasic led(sdk, kLedPin);
+  led.SetDir(true);
   // Debug pin to watch the processing time by oscilloscope.
   // This pin is "H" during the audio processing.
-  sdk.gpio_init(kI2sGpioPinDebug);
-  sdk.gpio_set_dir(kI2sGpioPinDebug, true);
+  ::pico_driver::GpioBasic debug_pin(sdk, kI2sGpioPinDebug);
+  debug_pin.SetDir(true);
 
   // CODEC initialization and run.
   codec.Start();
@@ -98,7 +99,8 @@ int main() {
     int32_t right_sample = i2s.GetFIFOBlocking();
     // Signaling the start of processing to the external pin.
     // We have to complete the processing within 1 sample time.
-    sdk.gpio_put(kI2sGpioPinDebug, true);
+    //    sdk.gpio_put(kI2sGpioPinDebug, true);
+    debug_pin.Put(true);
 
 // __arm__ predefined macro is defined by compiler if the target is
 // ARM 32bit architecture.
@@ -118,7 +120,8 @@ int main() {
     i2s.PutFIFOBlocking(left_sample);
     i2s.PutFIFOBlocking(right_sample);
     // Signaling the end of processing to the external pin.
-    sdk.gpio_put(kI2sGpioPinDebug, false);
+    //   sdk.gpio_put(kI2sGpioPinDebug, false);
+    debug_pin.Put(true);
   }
 
   // Information for the picotool.
