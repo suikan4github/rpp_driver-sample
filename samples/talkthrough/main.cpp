@@ -43,7 +43,7 @@ int main() {
   const uint kI2sStateMachine = 0;
 
   // SDK Wrapper object.
-  ::pico_driver::SdkWrapper sdk;
+  ::rpp_driver::SdkWrapper sdk;
 
   // Init USB-Serial port by 9600bps, 1stop bit, 8bit.
   // add following lines to CMakeLists.txt
@@ -64,28 +64,28 @@ int main() {
 #endif
 
   // Prepare the Audio CODEC.
-  ::pico_driver::I2cMaster i2c(sdk, *i2c1, kI2cClock, kI2cScl_pin, kI2cSdaPin);
-  ::pico_driver::UmbAdau1361Lower codec_lower(i2c, kAdau1361I2cAddress);
-  ::pico_driver::Adau1361 codec(kFs, kMClock, codec_lower);
+  ::rpp_driver::I2cMaster i2c(sdk, *i2c1, kI2cClock, kI2cScl_pin, kI2cSdaPin);
+  ::rpp_driver::UmbAdau1361Lower codec_lower(i2c, kAdau1361I2cAddress);
+  ::rpp_driver::Adau1361 codec(kFs, kMClock, codec_lower);
 
   // I2S Initialization. We run the I2S PIO program from here.
-  ::pico_driver::DuplexSlaveI2s i2s(sdk, i2s_pio, kI2sStateMachine,
-                                    kI2sGpioPinBase);
+  ::rpp_driver::DuplexSlaveI2s i2s(sdk, i2s_pio, kI2sStateMachine,
+                                   kI2sGpioPinBase);
 
   // Use RasPi Pico on-board LED.
   // 1=> Turn on, 0 => Turn pff.
-  ::pico_driver::GpioBasic led(sdk, kLedPin);
+  ::rpp_driver::GpioBasic led(sdk, kLedPin);
   led.SetDir(true);
   // Debug pin to watch the processing time by oscilloscope.
   // This pin is "H" during the audio processing.
-  ::pico_driver::GpioBasic debug_pin(sdk, kI2sGpioPinDebug);
+  ::rpp_driver::GpioBasic debug_pin(sdk, kI2sGpioPinDebug);
   debug_pin.SetDir(true);
 
   // CODEC initialization and run.
   codec.Start();
   // Un mute the codec to enable the sound. Default gain is 0dB.
-  codec.Mute(pico_driver::Adau1361::LineInput, false);        // unmute
-  codec.Mute(pico_driver::Adau1361::HeadphoneOutput, false);  // unmute
+  codec.Mute(rpp_driver::Adau1361::LineInput, false);        // unmute
+  codec.Mute(rpp_driver::Adau1361::HeadphoneOutput, false);  // unmute
 
   // Sync with WS, and then start to transfer.
   // After this line, We have to wait for the RX FIFO ASAP.
@@ -128,7 +128,7 @@ int main() {
   // clang-format off
   bi_decl(bi_program_description(
       "Working with UMB-ADAU1361A board. ADAU1361A I2C address is 0x38."));
-  bi_decl(bi_program_url("https://github.com/suikan4github/pico_driver-sample"));
+  bi_decl(bi_program_url("https://github.com/suikan4github/rpp_driver-sample"));
   bi_decl(bi_2pins_with_func(kI2cScl_pin, kI2cSdaPin, GPIO_FUNC_I2C));
   bi_decl(bi_4pins_with_names(kI2sGpioPinBase, "I2S SDO", kI2sGpioPinBase + 1,
                               "I2S_SDI", kI2sGpioPinBase + 2, "I2S BCLK IN",

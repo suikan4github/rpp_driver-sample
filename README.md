@@ -1,5 +1,5 @@
-# pico_driver-sample
-Sample program for the pico_driver library. 
+# rpp_driver-sample
+Sample program for the rpp_driver library. 
 
 ## Installing tool
 To build the samples or test, you need to install the build tools on Ubuntu : 

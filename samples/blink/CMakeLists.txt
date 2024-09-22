@@ -13,7 +13,7 @@ add_executable(${PROJECT_NAME}
                                                 hardware_i2c
                                                 hardware_pio)
 # local dependencies
-        target_link_libraries(${PROJECT_NAME}  pico_driver)
+        target_link_libraries(${PROJECT_NAME}  rpp_driver)
 
 # enable usb output, disable uart output
 #    pico_enable_stdio_usb(${PROJECT_NAME} 1)
