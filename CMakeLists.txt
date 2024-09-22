@@ -52,5 +52,5 @@ project(pico_duplex_i2s_samples)
 # The original of this file can be found at : 
 # https://github.com/raspberrypi/pico-examples/blob/master/blink/CMakeLists.txt
 
-add_subdirectory(pico_driver)
+add_subdirectory(rpp_driver)
 add_subdirectory(samples)
