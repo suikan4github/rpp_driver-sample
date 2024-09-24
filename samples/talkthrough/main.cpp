@@ -7,10 +7,10 @@
 #endif
 
 #include "adau1361.hpp"
-#include "duplexslavei2s.hpp"
 #include "gpiobasic.hpp"
 #include "hardware/pio.h"
 #include "i2cmaster.hpp"
+#include "i2sslaveduplex.hpp"
 #include "pico/binary_info.h"
 #include "sdkwrapper.hpp"
 #include "umbadau1361lower.hpp"
@@ -69,7 +69,7 @@ int main() {
   ::rpp_driver::Adau1361 codec(kFs, kMClock, codec_lower);
 
   // I2S Initialization. We run the I2S PIO program from here.
-  ::rpp_driver::DuplexSlaveI2s i2s(sdk, i2s_pio, kI2sStateMachine,
+  ::rpp_driver::I2sSlaveDuplex i2s(sdk, i2s_pio, kI2sStateMachine,
                                    kI2sGpioPinBase);
 
   // Use RasPi Pico on-board LED.
