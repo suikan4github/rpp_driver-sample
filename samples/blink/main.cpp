@@ -17,10 +17,8 @@ int main() {
 
   // Audio talk thorough
   while (true) {
-    led.Put(true);  // turn on
-    sdk.sleep_ms(125);
-    led.Put(false);  // turn off
-    sdk.sleep_ms(875);
+    sdk.sleep_ms(250);
+    led.Toggle();
   }
 
   // Information for the picotool.
