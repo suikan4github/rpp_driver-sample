@@ -117,7 +117,6 @@ int main() {
     int32_t right_sample = i2s.GetFifoBlocking();
     // Signaling the start of processing to the external pin.
     // We have to complete the processing within 1 sample time.
-    //    sdk.gpio_put(kI2sGpioPinDebug, true);
     debug_pin.Put(true);
 
 // __arm__ predefined macro is defined by compiler if the target is
@@ -138,8 +137,7 @@ int main() {
     i2s.PutFifoBlocking(left_sample);
     i2s.PutFifoBlocking(right_sample);
     // Signaling the end of processing to the external pin.
-    //   sdk.gpio_put(kI2sGpioPinDebug, false);
-    debug_pin.Put(true);
+    debug_pin.Put(false);
   }
 
   // Information for the picotool.
