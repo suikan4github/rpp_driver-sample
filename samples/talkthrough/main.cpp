@@ -64,21 +64,39 @@ int main() {
 #endif
 
   // Prepare the Audio CODEC.
-  ::rpp_driver::I2cMaster i2c(sdk, *i2c1, kI2cClock, kI2cScl_pin, kI2cSdaPin);
-  ::rpp_driver::UmbAdau1361Lower codec_lower(i2c, kAdau1361I2cAddress);
-  ::rpp_driver::Adau1361 codec(kFs, kMClock, codec_lower);
+  // The target CODEC board is UMB-ADAU1361-A
+  ::rpp_driver::I2cMaster i2c(sdk,          // Inject SDK Dependency.
+                              *i2c1,        // I2C controller to use.
+                              kI2cClock,    // I2C Clock [Hz]
+                              kI2cScl_pin,  // GPIO pin for SCL
+                              kI2cSdaPin);  // GPIO pin # for SDA
 
-  // I2S Initialization. We run the I2S PIO program from here.
-  ::rpp_driver::I2sSlaveDuplex i2s(sdk, i2s_pio, kI2sStateMachine,
-                                   kI2sGpioPinBase);
+  ::rpp_driver::UmbAdau1361Lower codec_lower(
+      i2c,                   // Inject I2C controller dependency.
+      kAdau1361I2cAddress);  // I2C address of UMB-ADAU1361-A
+
+  ::rpp_driver::Adau1361 codec(
+      kFs,           // Sampling frequency[Hz].
+      kMClock,       // Master clock of UMB-ADAU1361-A[Hz].
+      codec_lower);  // Inject Codec lower part dependency.
+
+  // I2S Class.
+  ::rpp_driver::I2sSlaveDuplex i2s(
+      sdk,               // Inject SDK dependency.
+      i2s_pio,           // Specify PIO controller to use.
+      kI2sStateMachine,  // Specify PIO State machine to use.
+      kI2sGpioPinBase);  // The youngest GPIO pin # for I2S which is SDO.
 
   // Use RasPi Pico on-board LED.
+  ::rpp_driver::GpioBasic led(sdk,       // Inject SDK dependency.
+                              kLedPin);  // GPIO pin # of LED.
   // 1=> Turn on, 0 => Turn pff.
-  ::rpp_driver::GpioBasic led(sdk, kLedPin);
   led.SetDir(true);
+
   // Debug pin to watch the processing time by oscilloscope.
   // This pin is "H" during the audio processing.
   ::rpp_driver::GpioBasic debug_pin(sdk, kI2sGpioPinDebug);
+  // 1=> Turn on, 0 => Turn pff.
   debug_pin.SetDir(true);
 
   // CODEC initialization and run.
