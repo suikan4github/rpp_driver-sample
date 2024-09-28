@@ -19,7 +19,7 @@ int main() {
   // Constants declaration.
   const unsigned int kAdau1361I2cAddress = 0x38;
   const unsigned int kI2cClock = 100'000;  // Hz.
-  const unsigned int kI2cScl_pin = 7;      // GPIO pin number.
+  const unsigned int kI2cSclPin = 7;       // GPIO pin number.
   const unsigned int kI2cSdaPin = 6;       // GPIO pin number.
   const unsigned int kMClock =
       12'000'000;                   // Hz. Master clock of the UMB-ADAU1361-A
@@ -68,7 +68,7 @@ int main() {
   ::rpp_driver::I2cMaster i2c(sdk,          // Inject SDK Dependency.
                               *i2c1,        // I2C controller to use.
                               kI2cClock,    // I2C Clock [Hz]
-                              kI2cScl_pin,  // GPIO pin for SCL
+                              kI2cSclPin,   // GPIO pin for SCL
                               kI2cSdaPin);  // GPIO pin # for SDA
 
   ::rpp_driver::UmbAdau1361Lower codec_lower(
@@ -145,7 +145,7 @@ int main() {
   bi_decl(bi_program_description(
       "Working with UMB-ADAU1361A board. ADAU1361A I2C address is 0x38."));
   bi_decl(bi_program_url("https://github.com/suikan4github/rpp_driver-sample"));
-  bi_decl(bi_2pins_with_func(kI2cScl_pin, kI2cSdaPin, GPIO_FUNC_I2C));
+  bi_decl(bi_2pins_with_func(kI2cSclPin, kI2cSdaPin, GPIO_FUNC_I2C));
   bi_decl(bi_4pins_with_names(kI2sGpioPinBase, "I2S SDO", kI2sGpioPinBase + 1,
                               "I2S_SDI", kI2sGpioPinBase + 2, "I2S BCLK IN",
                               kI2sGpioPinBase + 3, "I2S WS IN"));
