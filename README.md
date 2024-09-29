@@ -27,7 +27,7 @@ cmake --build build --config Debug --target all
 ```
 
 During the build sequence, the Cmake command will download the newest Raspberry Pi Pico SDK. 
-So, you don't need to download and set the environmental variables by themselves. 
+So, you don't need to download and set the environmental variables by yourself. 
 You will obtain the executable files (*.uf2) under the build/samples/ directories. 
 
 # License
