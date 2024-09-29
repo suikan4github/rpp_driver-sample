@@ -3,7 +3,7 @@
  * Copyright Seiichi Horie 2024.
  *
  * Scan all possible address on the I2C bus, and print the
- * map
+ * map to the serial port.
  *
  * To customize for your board, modify following 3 definitions:
  * - I2C_PORT
