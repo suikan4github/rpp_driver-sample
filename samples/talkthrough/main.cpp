@@ -1,4 +1,21 @@
-// #define I2S_DEBUG
+/*
+ * I2S audio input output program.
+ * Copyright Seiichi Horie 2024.
+ *
+ * Initialize the Audio CODEC as master mode. And then,
+ * Start the I2S data transfer. I2S timing signals of RasPi Pico/Pico2
+ * are slave. In the other words, BCLK and WS are input.
+ *
+ * 6  : I2C SCL
+ * 7  : I2C SDA
+ *
+ * 10 : I2S SDOUT
+ * 11 : I2S SDIN
+ * 12 : I2S BCLK (IN)
+ * 13 : I2S WS (IN)
+ *
+ * 15 : Processing status (OUT)
+ */
 
 // Include local definition
 #include <math.h>

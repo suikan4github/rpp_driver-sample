@@ -1,6 +1,15 @@
 /*
  * I2C bus scanning program.
  * Copyright Seiichi Horie 2024.
+ *
+ * Scan all possible address on the I2C bus, and print the
+ * map
+ *
+ * To customize for your board, modify following 3 definitions:
+ * - I2C_PORT
+ * - kI2cSclPin
+ * - kI2cSdaPin
+ *
  */
 // Include local definition
 #include <stdio.h>

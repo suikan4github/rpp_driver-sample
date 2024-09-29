@@ -1,4 +1,9 @@
-// #define I2S_DEBUG
+/*
+ * LED blinking program.
+ * Copyright Seiichi Horie 2024.
+ *
+ * Blink on board LED of RasPi Pico/Pico2 board.
+ */
 
 // Include local definition
 #include "gpiobasic.hpp"
