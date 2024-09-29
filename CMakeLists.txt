@@ -46,8 +46,10 @@ include(pico_sdk_import.cmake)
 # initialize the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# rest of your project
-project(pico_duplex_i2s_samples)
+# We need a project name at top level due to the CMake requirement. 
+# Because each sample program have their own project name, 
+# this is considered as dummy name. 
+project(rpp-driver-samples-top)
 
 # The original of this file can be found at : 
 # https://github.com/raspberrypi/pico-examples/blob/master/blink/CMakeLists.txt
