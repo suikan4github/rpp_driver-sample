@@ -1,0 +1,3 @@
+[submodule "rpp_driver"]
+	path = rpp_driver
+	url = https://github.com/suikan4github/rpp_driver.git
