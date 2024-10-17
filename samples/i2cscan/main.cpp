@@ -14,11 +14,11 @@
 // Include local definition
 #include <stdio.h>
 
-#include "gpiobasic.hpp"
-#include "i2cmaster.hpp"
+#include "gpio/gpiobasic.hpp"
+#include "i2c/i2cmaster.hpp"
 #include "pico/binary_info.h"
 #include "pico/stdlib.h"
-#include "sdkwrapper.hpp"
+#include "sdk/sdkwrapper.hpp"
 
 // Definition of the I2C port and pin to scan.
 #define I2C_PORT i2c1
