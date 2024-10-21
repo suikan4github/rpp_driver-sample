@@ -23,14 +23,14 @@
 #include <stdio.h>
 #endif
 
-#include "adau1361.hpp"
-#include "gpiobasic.hpp"
+#include "codec/adau1361.hpp"
+#include "codec/umbadau1361lower.hpp"
+#include "gpio/gpiobasic.hpp"
 #include "hardware/pio.h"
-#include "i2cmaster.hpp"
-#include "i2sslaveduplex.hpp"
+#include "i2c/i2cmaster.hpp"
+#include "i2s/i2sslaveduplex.hpp"
 #include "pico/binary_info.h"
-#include "sdkwrapper.hpp"
-#include "umbadau1361lower.hpp"
+#include "sdk/sdkwrapper.hpp"
 
 int main() {
   // Constants declaration.

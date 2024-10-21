@@ -6,9 +6,9 @@
  */
 
 // Include local definition
-#include "gpiobasic.hpp"
+#include "gpio/gpiobasic.hpp"
 #include "pico/binary_info.h"
-#include "sdkwrapper.hpp"
+#include "sdk/sdkwrapper.hpp"
 
 int main() {
   // Constants declaration.
